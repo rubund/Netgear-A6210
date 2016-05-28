@@ -14,7 +14,7 @@ override_dh_install:
 	mkdir tmpinst
 	rsync ./ -rv . tmpinst/ --exclude tmpinst --exclude debian --exclude .git --exclude .gitconfig
 	dh_install tmpinst/* usr/src/netgear-a6210-$(VERSION)/
-	dh_install RT2870STA.dat etc/Wireless/RT2870STA/RT2870STA.dat
+	dh_install RT2870STA.dat etc/Wireless/RT2870STA/
 
 override_dh_clean:
 	dh_clean
