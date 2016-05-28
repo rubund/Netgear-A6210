@@ -1,0 +1,26 @@
+#!/usr/bin/make -f
+#export DH_VERBOSE=1
+
+VERSION=$(shell dpkg-parsechangelog | grep ^Version: | cut -d" " -f2)
+
+%:
+	dh $@ --with dkms
+
+override_dh_auto_build:
+
+override_dh_auto_configure:
+
+override_dh_install:
+	mkdir tmpinst
+	rsync ./ -rv . tmpinst/ --exclude tmpinst --exclude debian --exclude .git --exclude .gitconfig
+	dh_install tmpinst/* usr/src/netgear-a6210-$(VERSION)/
+	dh_install RT2870STA.dat etc/Wireless/RT2870STA/RT2870STA.dat
+
+override_dh_clean:
+	dh_clean
+	rm -rf tmpinst
+
+override_dh_auto_install:
+
+override_dh_dkms:
+	dh_dkms -V $(VERSION)

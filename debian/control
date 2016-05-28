@@ -1,0 +1,11 @@
+Source: netgear-a6210
+Section: kernel
+Priority: optional
+Maintainer: Ruben Undheim <ruben.undheim@gmail.com>
+Build-Depends: debhelper (>=9), dkms, rsync
+Standards-Version: 3.9.8
+
+Package: netgear-a6210-dkms
+Architecture: all
+Depends: ${misc:Depends}
+Description: kernel module for Wifi device
